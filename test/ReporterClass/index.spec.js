@@ -22,6 +22,7 @@ describe('get options ', () => {
       customInfos: undefined,
       testCommand: 'npx jest',
       multipleReportsUnitePath: '',
+      defaultFilter: undefined,
     };
     expect(getOptions()).toEqual(defaultOption)
   })
@@ -36,7 +37,8 @@ describe('get options ', () => {
       hideIcon: true,
       customInfos: '{a: 1}',
       testCommand: 'yarn test',
-      multipleReportsUnitePath: '../test'
+      multipleReportsUnitePath: '../test',
+      defaultFilter: 'failed',
     }
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: './test',
@@ -47,7 +49,8 @@ describe('get options ', () => {
       JEST_HTML_REPORTERS_HIDE_ICON: true,
       JEST_HTML_REPORTERS_CUSTOM_INFOS: '{a: 1}',
       JEST_HTML_REPORTERS_TEST_COMMAND: 'yarn test',
-      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: '../test'
+      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: '../test',
+      JEST_HTML_REPORTERS_DEFAULT_FILTER: 'failed',
     }
     expect(getOptions()).toEqual(envOptions)
   })

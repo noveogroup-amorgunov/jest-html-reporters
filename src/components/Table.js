@@ -52,7 +52,7 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTime(start, end);
 
-const getColumns = (rootDir, execCommand) => [
+const getColumns = (rootDir, { testCommand: execCommand, defaultFilter }) => [
   {
     title: "File",
     dataIndex: "testFilePath",
@@ -102,6 +102,7 @@ const getColumns = (rootDir, execCommand) => [
       { text: "Todo", value: "todo" },
       { text: "Not Passed", value: "noPass" },
     ],
+    filteredValue: [defaultFilter],
     filterMultiple: false,
     onFilter: (
       value,
@@ -160,7 +161,7 @@ const TableItem = ({
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })
         }
-        columns={getColumns(rootDir, _reporterOptions.testCommand)}
+        columns={getColumns(rootDir, _reporterOptions)}
         dataSource={testResults}
       />
     )}
